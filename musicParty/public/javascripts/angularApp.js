@@ -27,7 +27,7 @@ function($stateProvider, $urlRouterProvider) {
         return posts.get($stateParams.id);
       }]
     }
-  });
+  })
 
   .state('login', {
   url: '/login',
@@ -191,7 +191,7 @@ function($scope, posts) {
 
 }]);
 
-app.controller('PostCtrl', ['$scope', 'posts', 'post', 'auth',
+app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth',
 function($scope, posts, post, auth) {
   $scope.post = post;
   $scope.isLoggedIn = auth.isLoggedIn;
