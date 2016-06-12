@@ -16,7 +16,7 @@ function($stateProvider, $urlRouterProvider) {
     .state('posts', {
       url :'/posts/{id}', 
       templateUrl: '/posts.html', 
-      controller: 'PostsController'
+      controller: 'PostsCtrl'
     });
 
   $urlRouterProvider.otherwise('home');
@@ -30,6 +30,12 @@ app.factory('posts', [function() {
 
   return o;
 
+}]);
+
+app.factory('auth', ['$http', '$window', function($http, $window){
+   var auth = {};
+
+  return auth;
 }]);
 
 app.controller('MainController', [
@@ -62,7 +68,7 @@ function($scope, posts) {
 
 }]);
 
-app.controller('PostsController', [
+app.controller('PostsCtrl', [
   '$scope', 
   '$stateParams',
   'posts',
