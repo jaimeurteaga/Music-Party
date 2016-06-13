@@ -60,7 +60,7 @@
         </span>
 
       <span>
-        <a href="#/posts/{{$index}}">Comments</a>
+        <a href="#/posts/{{post._id}}">Comments</a>
       </span>
 
       </div>
@@ -179,7 +179,6 @@
   </div>
 
     <form ng-submit="addComment()" ng-show="isLoggedIn()" style="margin-top:30px;">
-    style="margin-top:30px;">
     <h3>Add a new comment</h3>
 
     <div class="form-group">
