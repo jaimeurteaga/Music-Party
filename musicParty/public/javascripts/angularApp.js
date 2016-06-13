@@ -193,6 +193,7 @@ function($scope, posts) {
 
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth',
 function($scope, posts, post, auth) {
+ 
   $scope.post = post;
   $scope.isLoggedIn = auth.isLoggedIn;
 
@@ -208,6 +209,7 @@ function($scope, posts, post, auth) {
     });
     $scope.body = '';
   };
+
   $scope.upvote = function(comment) {
     posts.upvoteComment(post, comment);
   };
@@ -222,6 +224,7 @@ app.controller('AuthController', [
 '$scope',
 '$state',
 'auth',
+
 function($scope, $state, auth){
   $scope.user = {};
 
