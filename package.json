@@ -15,6 +15,7 @@
     "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.4.12",
     "morgan": "~1.6.1",
+    "node-soundcloud": "0.0.5",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.0"

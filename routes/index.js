@@ -15,6 +15,14 @@ var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 var User = mongoose.model('User');
 
+var SC = require('node-soundcloud');
+// Initialize client 
+SC.init({
+  id: 'd2608224bcfc62f56f072dea63df4bdf',
+  secret: 'ea4cd243f5780ff679b203179e477b93',
+  uri: 'http://www.millsblog.com'
+});
+
 router.post('/register', function(req, res, next) {
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({ message: 'Please provide a username & password'});
@@ -60,19 +68,47 @@ router.get('/posts', function(req, res, next) {
 router.post('/posts', auth, function(req, res, next) {
 	var post = new Post(req.body);
 	post.author = req.payload.username;
+
+	var postLink = post.link;
 	
-	post.save(function(err, posts) {
+	var baseReqString = '/resolve/?url=';
+
+	var combinedReqString =  baseReqString + postLink;
+
+	SC.get(combinedReqString, function(err, result) {
+
+		var trackUrl = result['location'];
+
+		var trackId = trackUrl.match("tracks/(.*).json");
+
+		console.log(trackId[1]);
+
+		post.trackId = trackId[1];
+
+		post.save(function(err, posts) {
+		
 		if (err) {
 			 return next(err);
 		}
 
 		res.json(post);
-	})
+		
+		})
+	
+	});
+	
+	// post.save(function(err, posts) {
+	// 	if (err) {
+	// 		 return next(err);
+	// 	}
+
+	// 	res.json(post);
+	// })
 
 });
 
 router.param('post', function(req, res, next, id) {
-	var query = Post.findById(id);
+ 	var query = Post.findById(id);
 
 	query.exec(function (err, post) {
 		if (err) {
