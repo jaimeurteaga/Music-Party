@@ -1,5 +1,5 @@
 # Music Party
 
-A spot to post your songs and figure out the hottest songs your network is finding
+Music Party will be a spot where you can post the flame tracks you find on the web for your friends to see and upvote/comment on them. 
 
-To get started and play with it - npm install -> npm start (make sure you have mongo running)
+Apologies in advance if this code sucks - it probably should, this is my first real project doing anything web-related so any deveoper feedback/help would be much appreciated!
