@@ -191,11 +191,19 @@ function($scope, posts) {
 
 }]);
 
+app.filter('trustUrl', ['$sce', function ($sce) {
+  return function(url) {
+    return $sce.trustAsResourceUrl(url);
+  };
+}]);
+
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth',
 function($scope, posts, post, auth) {
  
   $scope.post = post;
   $scope.isLoggedIn = auth.isLoggedIn;
+
+  console.log(post.trackUrl);
 
   $scope.addComment = function() {
     if ($scope.body === '') {

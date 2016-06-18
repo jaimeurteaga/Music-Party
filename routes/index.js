@@ -81,7 +81,8 @@ router.post('/posts', auth, function(req, res, next) {
 
 		var trackId = resTrackUrl.match("tracks/(.*).json");
 
-		var soundcloudBaseUrl = 'http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F';
+		var soundcloudBaseUrl = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/';
+
 		var soundcloudUrlWithTrack = soundcloudBaseUrl + trackId[1];
 		var soundcloudUrl = soundcloudUrlWithTrack;
 
@@ -90,7 +91,9 @@ router.post('/posts', auth, function(req, res, next) {
 		console.log(soundcloudUrl);
 
 		post.trackId = trackId[1];
-		post.trackUrl = soundcloudUrl;
+		//post.trackUrl = soundcloudUrl;
+
+		post.trackUrl = decodeURIComponent(soundcloudUrl);
 
 		post.save(function(err, posts) {
 		
